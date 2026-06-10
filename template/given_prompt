@@ -23,4 +23,7 @@ Format: Strictly follow the format mentioned in respective file for which templa
 ## For Scope Generation
 Act according to the [manager_persona.md](file;file:///Users/neosoft/StudioProjects/vibe-coding-poc/personas/manager_persona.md) . Create a scope by referring [prd_digital_menu.md](file;file:///Users/neosoft/StudioProjects/vibe-coding-poc/docs/prd_digital_menu.md)  and by following the format specified in [project_scope_template.md](template/project_scope_template.md) 
 Format: Strictly follow the format mentioned in respective file for which template is given and make sure to put scope in folder
+
+## Development
+Act as [frontend_persona](../personas/frontend_persona.md). Using [agent](../agent) start development of the application inside folder name
  
