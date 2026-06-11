@@ -26,4 +26,11 @@ Format: Strictly follow the format mentioned in respective file for which templa
 
 ## Development
 Act as [frontend_persona](../personas/frontend_persona.md). Using [agent](../agent) start development of the application inside folder name
+
+## Workflow document generation:
+[workflow_document_template.md] using this template create Developer Handover & Workflow Document inside Folder
+ 
+ 
+## Prompt History generation:
+[prompt_history_tempate.md] using this template create prompt history document inside Folder
  

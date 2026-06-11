@@ -34,11 +34,25 @@ class AuthRepositoryImpl implements AuthRepository {
         message: e.message ?? 'Authentication failed.',
       );
     } catch (e) {
+      final errorString = e.toString();
+      // Detect unauthorized-domain errors surfaced via the Pigeon platform channel.
+      // This occurs when the hosting URL is not listed in Firebase Console →
+      // Authentication → Settings → Authorized Domains.
+      if (errorString.contains('unauthorized-domain') ||
+          errorString.contains('FirebaseAuthHostApi')) {
+        return const CloudResult(
+          statusCode: 403,
+          message: 'Sign-in is not permitted from this domain. '
+              'Add this URL to Firebase Console → '
+              'Authentication → Settings → Authorized Domains.',
+        );
+      }
       return CloudResult(
         statusCode: 500,
         message: 'An unexpected error occurred: $e',
       );
     }
+
   }
 
   @override
