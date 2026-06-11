@@ -4,6 +4,7 @@ class Dish {
   final double price;
   final String photoUrl;
   final String categoryId;
+  final int? createdAt;
 
   const Dish({
     required this.id,
@@ -11,5 +12,6 @@ class Dish {
     required this.price,
     required this.photoUrl,
     required this.categoryId,
+    this.createdAt,
   });
 }

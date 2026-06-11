@@ -125,6 +125,7 @@ class _AddDishDialogState extends State<AddDishDialog> {
               fileName: _selectedFileName,
               fileBytes: _selectedBytes,
               existingPhotoUrl: widget.dish!.photoUrl,
+              existingCreatedAt: widget.dish!.createdAt,
             );
       } else {
         // Add Mode

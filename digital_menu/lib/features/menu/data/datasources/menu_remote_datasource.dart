@@ -49,7 +49,15 @@ class MenuRemoteDataSourceImpl implements MenuRemoteDataSource {
     return _dishesRef
         .where('categoryId', isEqualTo: categoryId)
         .snapshots()
-        .map((snapshot) => snapshot.docs.map((doc) => doc.data()).toList());
+        .map((snapshot) {
+      final list = snapshot.docs.map((doc) => doc.data()).toList();
+      list.sort((a, b) {
+        final aTime = a.createdAt ?? 0;
+        final bTime = b.createdAt ?? 0;
+        return aTime.compareTo(bTime);
+      });
+      return list;
+    });
   }
 
   @override

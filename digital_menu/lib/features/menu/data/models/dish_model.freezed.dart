@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$DishModel {
 
- String get id; String get name; double get price; String get photoUrl; String get categoryId;
+ String get id; String get name; double get price; String get photoUrl; String get categoryId; int? get createdAt;
 /// Create a copy of DishModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $DishModelCopyWith<DishModel> get copyWith => _$DishModelCopyWithImpl<DishModel>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DishModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.price, price) || other.price == price)&&(identical(other.photoUrl, photoUrl) || other.photoUrl == photoUrl)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DishModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.price, price) || other.price == price)&&(identical(other.photoUrl, photoUrl) || other.photoUrl == photoUrl)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,price,photoUrl,categoryId);
+int get hashCode => Object.hash(runtimeType,id,name,price,photoUrl,categoryId,createdAt);
 
 @override
 String toString() {
-  return 'DishModel(id: $id, name: $name, price: $price, photoUrl: $photoUrl, categoryId: $categoryId)';
+  return 'DishModel(id: $id, name: $name, price: $price, photoUrl: $photoUrl, categoryId: $categoryId, createdAt: $createdAt)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $DishModelCopyWith<$Res>  {
   factory $DishModelCopyWith(DishModel value, $Res Function(DishModel) _then) = _$DishModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, double price, String photoUrl, String categoryId
+ String id, String name, double price, String photoUrl, String categoryId, int? createdAt
 });
 
 
@@ -65,14 +65,15 @@ class _$DishModelCopyWithImpl<$Res>
 
 /// Create a copy of DishModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? price = null,Object? photoUrl = null,Object? categoryId = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? price = null,Object? photoUrl = null,Object? categoryId = null,Object? createdAt = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as double,photoUrl: null == photoUrl ? _self.photoUrl : photoUrl // ignore: cast_nullable_to_non_nullable
 as String,categoryId: null == categoryId ? _self.categoryId : categoryId // ignore: cast_nullable_to_non_nullable
-as String,
+as String,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -157,10 +158,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  double price,  String photoUrl,  String categoryId)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  double price,  String photoUrl,  String categoryId,  int? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DishModel() when $default != null:
-return $default(_that.id,_that.name,_that.price,_that.photoUrl,_that.categoryId);case _:
+return $default(_that.id,_that.name,_that.price,_that.photoUrl,_that.categoryId,_that.createdAt);case _:
   return orElse();
 
 }
@@ -178,10 +179,10 @@ return $default(_that.id,_that.name,_that.price,_that.photoUrl,_that.categoryId)
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  double price,  String photoUrl,  String categoryId)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  double price,  String photoUrl,  String categoryId,  int? createdAt)  $default,) {final _that = this;
 switch (_that) {
 case _DishModel():
-return $default(_that.id,_that.name,_that.price,_that.photoUrl,_that.categoryId);case _:
+return $default(_that.id,_that.name,_that.price,_that.photoUrl,_that.categoryId,_that.createdAt);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -198,10 +199,10 @@ return $default(_that.id,_that.name,_that.price,_that.photoUrl,_that.categoryId)
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  double price,  String photoUrl,  String categoryId)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  double price,  String photoUrl,  String categoryId,  int? createdAt)?  $default,) {final _that = this;
 switch (_that) {
 case _DishModel() when $default != null:
-return $default(_that.id,_that.name,_that.price,_that.photoUrl,_that.categoryId);case _:
+return $default(_that.id,_that.name,_that.price,_that.photoUrl,_that.categoryId,_that.createdAt);case _:
   return null;
 
 }
@@ -213,7 +214,7 @@ return $default(_that.id,_that.name,_that.price,_that.photoUrl,_that.categoryId)
 @JsonSerializable()
 
 class _DishModel extends DishModel {
-  const _DishModel({required this.id, required this.name, required this.price, required this.photoUrl, required this.categoryId}): super._();
+  const _DishModel({required this.id, required this.name, required this.price, required this.photoUrl, required this.categoryId, this.createdAt}): super._();
   factory _DishModel.fromJson(Map<String, dynamic> json) => _$DishModelFromJson(json);
 
 @override final  String id;
@@ -221,6 +222,7 @@ class _DishModel extends DishModel {
 @override final  double price;
 @override final  String photoUrl;
 @override final  String categoryId;
+@override final  int? createdAt;
 
 /// Create a copy of DishModel
 /// with the given fields replaced by the non-null parameter values.
@@ -235,16 +237,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DishModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.price, price) || other.price == price)&&(identical(other.photoUrl, photoUrl) || other.photoUrl == photoUrl)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DishModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.price, price) || other.price == price)&&(identical(other.photoUrl, photoUrl) || other.photoUrl == photoUrl)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,price,photoUrl,categoryId);
+int get hashCode => Object.hash(runtimeType,id,name,price,photoUrl,categoryId,createdAt);
 
 @override
 String toString() {
-  return 'DishModel(id: $id, name: $name, price: $price, photoUrl: $photoUrl, categoryId: $categoryId)';
+  return 'DishModel(id: $id, name: $name, price: $price, photoUrl: $photoUrl, categoryId: $categoryId, createdAt: $createdAt)';
 }
 
 
@@ -255,7 +257,7 @@ abstract mixin class _$DishModelCopyWith<$Res> implements $DishModelCopyWith<$Re
   factory _$DishModelCopyWith(_DishModel value, $Res Function(_DishModel) _then) = __$DishModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, double price, String photoUrl, String categoryId
+ String id, String name, double price, String photoUrl, String categoryId, int? createdAt
 });
 
 
@@ -272,14 +274,15 @@ class __$DishModelCopyWithImpl<$Res>
 
 /// Create a copy of DishModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? price = null,Object? photoUrl = null,Object? categoryId = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? price = null,Object? photoUrl = null,Object? categoryId = null,Object? createdAt = freezed,}) {
   return _then(_DishModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as double,photoUrl: null == photoUrl ? _self.photoUrl : photoUrl // ignore: cast_nullable_to_non_nullable
 as String,categoryId: null == categoryId ? _self.categoryId : categoryId // ignore: cast_nullable_to_non_nullable
-as String,
+as String,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 

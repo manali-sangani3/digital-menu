@@ -49,6 +49,7 @@ class AdminDishCubit extends Cubit<AdminDishState> {
       price: price,
       photoUrl: downloadUrl,
       categoryId: categoryId,
+      createdAt: DateTime.now().millisecondsSinceEpoch,
     );
 
     final saveResult = await _addDishUseCase(dish);
@@ -67,6 +68,7 @@ class AdminDishCubit extends Cubit<AdminDishState> {
     String? fileName,
     Uint8List? fileBytes,
     required String existingPhotoUrl,
+    int? existingCreatedAt,
   }) async {
     emit(const AdminDishState.loading());
 
@@ -89,6 +91,7 @@ class AdminDishCubit extends Cubit<AdminDishState> {
       price: price,
       photoUrl: photoUrl,
       categoryId: categoryId,
+      createdAt: existingCreatedAt ?? DateTime.now().millisecondsSinceEpoch,
     );
 
     final result = await _updateDishUseCase(dish);

@@ -12,6 +12,7 @@ abstract class DishModel with _$DishModel {
     required double price,
     required String photoUrl,
     required String categoryId,
+    int? createdAt,
   }) = _DishModel;
 
   factory DishModel.fromJson(Map<String, dynamic> json) =>
@@ -23,6 +24,7 @@ abstract class DishModel with _$DishModel {
         price: entity.price,
         photoUrl: entity.photoUrl,
         categoryId: entity.categoryId,
+        createdAt: entity.createdAt,
       );
 
   const DishModel._();
@@ -33,5 +35,6 @@ abstract class DishModel with _$DishModel {
         price: price,
         photoUrl: photoUrl,
         categoryId: categoryId,
+        createdAt: createdAt,
       );
 }
