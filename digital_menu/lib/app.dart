@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/router/router.dart';
 import 'core/theme/theme.dart';
+import 'core/di/di.dart';
+import 'features/admin/presentation/controllers/auth_cubit.dart';
 
 class DigitalMenuApp extends StatelessWidget {
   final String? initError;
@@ -43,11 +46,15 @@ class DigitalMenuApp extends StatelessWidget {
       );
     }
 
-    return MaterialApp.router(
-      title: 'Digital Menu',
-      theme: CafeTheme.lightTheme,
-      routerConfig: appRouter,
-      debugShowCheckedModeBanner: false,
+    return BlocProvider<AuthCubit>(
+      create: (context) => sl<AuthCubit>(),
+      child: MaterialApp.router(
+        title: 'Digital Menu',
+        theme: CafeTheme.lightTheme,
+        routerConfig: appRouter,
+        debugShowCheckedModeBanner: false,
+      ),
     );
   }
 }
+
