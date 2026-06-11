@@ -5,8 +5,9 @@
 **Date:** 2026-06-11  
 **Prepared By:** Senior Flutter Architect  
 **Audience:** New developers, maintainers, QA engineers  
-**Hosting URL:** https://digital-menu-prod-2026.firebaseapp.com
-
+**Hosting URLs:**  
+* https://digital-menu-prod-2026.firebaseapp.com  
+* https://digital-menu-prod-2026.web.app
 ---
 
 ## 1. Project Overview
@@ -664,7 +665,9 @@ firebase deploy --only hosting
 
 ### Firebase Hosting Setup
 
-**Live Production URL:** https://digital-menu-prod-2026.firebaseapp.com
+**Live Production URLs:**  
+* https://digital-menu-prod-2026.firebaseapp.com  
+* https://digital-menu-prod-2026.web.app
 
 ```bash
 # Install Firebase CLI
@@ -681,8 +684,12 @@ firebase deploy --only hosting
 ```
 
 After deployment, the app is accessible at:
-- Customer menu: https://digital-menu-prod-2026.firebaseapp.com/#/menu
-- Admin portal: https://digital-menu-prod-2026.firebaseapp.com/#/admin
+- **Default Domain:**  
+  * Customer menu: https://digital-menu-prod-2026.firebaseapp.com/#/menu  
+  * Admin portal: https://digital-menu-prod-2026.firebaseapp.com/#/admin  
+- **Alternative Domain:**  
+  * Customer menu: https://digital-menu-prod-2026.web.app/#/menu  
+  * Admin portal: https://digital-menu-prod-2026.web.app/#/admin  
 
 ### CI/CD Flow
 
@@ -835,10 +842,14 @@ firebase deploy --only hosting
 
 | URL | Description |
 |-----|-------------|
-| https://digital-menu-prod-2026.firebaseapp.com | Live app — home page with QR code |
-| https://digital-menu-prod-2026.firebaseapp.com/#/menu | Live customer-facing menu |
-| https://digital-menu-prod-2026.firebaseapp.com/#/admin/login | Live admin login |
-| https://digital-menu-prod-2026.firebaseapp.com/#/admin | Live admin dashboard |
+| https://digital-menu-prod-2026.firebaseapp.com | Live app — home page with QR code (Default Domain) |
+| https://digital-menu-prod-2026.web.app | Live app — home page with QR code (Alternative Domain) |
+| https://digital-menu-prod-2026.firebaseapp.com/#/menu | Live customer-facing menu (Default Domain) |
+| https://digital-menu-prod-2026.web.app/#/menu | Live customer-facing menu (Alternative Domain) |
+| https://digital-menu-prod-2026.firebaseapp.com/#/admin/login | Live admin login (Default Domain) |
+| https://digital-menu-prod-2026.web.app/#/admin/login | Live admin login (Alternative Domain) |
+| https://digital-menu-prod-2026.firebaseapp.com/#/admin | Live admin dashboard (Default Domain) |
+| https://digital-menu-prod-2026.web.app/#/admin | Live admin dashboard (Alternative Domain) |
 
 #### Local Development
 
