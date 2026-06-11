@@ -16,6 +16,12 @@ import '../../features/admin/domain/usecases/logout_usecase.dart';
 import '../../features/admin/domain/usecases/stream_user_usecase.dart';
 import '../../features/admin/presentation/controllers/auth_cubit.dart';
 
+import '../../features/menu/domain/usecases/add_dish_usecase.dart';
+import '../../features/menu/domain/usecases/upload_dish_image_usecase.dart';
+import '../../features/menu/domain/usecases/update_dish_usecase.dart';
+import '../../features/menu/domain/usecases/delete_dish_usecase.dart';
+import '../../features/admin/presentation/controllers/admin_dish_cubit.dart';
+
 final sl = GetIt.instance;
 
 Future<void> init() async {
@@ -45,12 +51,24 @@ Future<void> init() async {
   sl.registerLazySingleton(() => LoginUseCase(sl()));
   sl.registerLazySingleton(() => LogoutUseCase(sl()));
   sl.registerLazySingleton(() => StreamUserUseCase(sl()));
+  sl.registerLazySingleton(() => AddDishUseCase(sl()));
+  sl.registerLazySingleton(() => UploadDishImageUseCase(sl()));
+  sl.registerLazySingleton(() => UpdateDishUseCase(sl()));
+  sl.registerLazySingleton(() => DeleteDishUseCase(sl()));
 
   // Cubits
   sl.registerFactory(
     () => MenuCubit(
       getCategoriesUseCase: sl(),
       getDishesByCategoryUseCase: sl(),
+    ),
+  );
+  sl.registerFactory(
+    () => AdminDishCubit(
+      addDishUseCase: sl(),
+      uploadDishImageUseCase: sl(),
+      updateDishUseCase: sl(),
+      deleteDishUseCase: sl(),
     ),
   );
   sl.registerLazySingleton(

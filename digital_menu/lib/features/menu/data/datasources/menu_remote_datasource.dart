@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../core/constants/constants.dart';
 import '../models/menu_category_model.dart';
@@ -6,6 +8,10 @@ import '../models/dish_model.dart';
 abstract class MenuRemoteDataSource {
   Stream<List<MenuCategoryModel>> streamCategories();
   Stream<List<DishModel>> streamDishesByCategory(String categoryId);
+  Future<void> addDish(DishModel dish);
+  Future<String> uploadImage(String fileName, Uint8List fileBytes);
+  Future<void> updateDish(DishModel dish);
+  Future<void> deleteDish(String dishId);
 }
 
 class MenuRemoteDataSourceImpl implements MenuRemoteDataSource {
@@ -44,5 +50,27 @@ class MenuRemoteDataSourceImpl implements MenuRemoteDataSource {
         .where('categoryId', isEqualTo: categoryId)
         .snapshots()
         .map((snapshot) => snapshot.docs.map((doc) => doc.data()).toList());
+  }
+
+  @override
+  Future<void> addDish(DishModel dish) async {
+    await _dishesRef.add(dish);
+  }
+
+  @override
+  Future<String> uploadImage(String fileName, Uint8List fileBytes) async {
+    final extension = fileName.split('.').last.toLowerCase();
+    final base64Str = base64Encode(fileBytes);
+    return 'data:image/$extension;base64,$base64Str';
+  }
+
+  @override
+  Future<void> updateDish(DishModel dish) async {
+    await _dishesRef.doc(dish.id).set(dish);
+  }
+
+  @override
+  Future<void> deleteDish(String dishId) async {
+    await _dishesRef.doc(dishId).delete();
   }
 }

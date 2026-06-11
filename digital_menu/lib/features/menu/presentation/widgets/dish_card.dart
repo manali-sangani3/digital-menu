@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../../domain/entities/dish.dart';
@@ -24,27 +25,43 @@ class DishCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: CachedNetworkImage(
-              imageUrl: dish.photoUrl,
-              width: double.infinity,
-              fit: BoxFit.cover,
-              placeholder: (context, url) => Container(
-                color: Colors.grey[200],
-                child: const Center(
-                  child: CircularProgressIndicator(),
-                ),
-              ),
-              errorWidget: (context, url, error) => Container(
-                color: Colors.grey[200],
-                child: const Center(
-                  child: Icon(
-                    Icons.broken_image_outlined,
-                    color: Colors.grey,
-                    size: 32,
+            child: dish.photoUrl.startsWith('data:image')
+                ? Image.memory(
+                    base64Decode(dish.photoUrl.split(',').last),
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => Container(
+                      color: Colors.grey[200],
+                      child: const Center(
+                        child: Icon(
+                          Icons.broken_image_outlined,
+                          color: Colors.grey,
+                          size: 32,
+                        ),
+                      ),
+                    ),
+                  )
+                : CachedNetworkImage(
+                    imageUrl: dish.photoUrl,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => Container(
+                      color: Colors.grey[200],
+                      child: const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
+                    errorWidget: (context, url, error) => Container(
+                      color: Colors.grey[200],
+                      child: const Center(
+                        child: Icon(
+                          Icons.broken_image_outlined,
+                          color: Colors.grey,
+                          size: 32,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            ),
           ),
           Padding(
             padding: const EdgeInsets.all(12),
